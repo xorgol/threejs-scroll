@@ -108,7 +108,6 @@
 
       // listener receives sounds
       // it is connected to the camera, they move together
-      //
       const listener = new THREE.AudioListener();
       camera.add( listener );
       const sound = new THREE.PositionalAudio( listener );
@@ -142,30 +141,30 @@
       cube.add(sound);
       scene.add(cube);
 
-    //   const customLight = new THREE.DirectionalLight(0xa19888, 8);
-    //   customLight.position.set(1, 5, 0);
-    //   customLight.castShadow = true;
-    //   customLight.target = cube;
-    //   scene.add(customLight.target);
-    //   customLight.lookAt(cube);
-    //   scene.add(customLight);
+      const customLight = new THREE.DirectionalLight(0xa19888, 8);
+      customLight.position.set(1, 5, 0);
+      customLight.castShadow = true;
+      customLight.target = cube;
+      scene.add(customLight.target);
+      customLight.lookAt(cube);
+      scene.add(customLight);
 
-    //   const corridorLight = new THREE.DirectionalLight(0x404040, 5);
-    //   corridorLight.position.set(-10, 5, 0);
-    //   corridorLight.lookAt(cube);
-    //   scene.add(corridorLight);
+      const corridorLight = new THREE.DirectionalLight(0x404040, 5);
+      corridorLight.position.set(-10, 5, 0);
+      corridorLight.lookAt(cube);
+      scene.add(corridorLight);
 
-    //   const scorridorLight = new THREE.DirectionalLight(0x404040, 9);
-    //   scorridorLight.position.set(-15, 5, 0);
-    //   scorridorLight.lookAt(cube);
-    //   scene.add(scorridorLight);
+      const scorridorLight = new THREE.DirectionalLight(0x404040, 9);
+      scorridorLight.position.set(-15, 5, 0);
+      scorridorLight.lookAt(cube);
+      scene.add(scorridorLight);
 
       const dracoLoader = new DRACOLoader();
       dracoLoader.setDecoderPath("jsm/libs/draco/gltf/");
 
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
-      loader.load("OPERA_SINGOLA_V10.glb", function (gltf) {
+      loader.load("OPERA_SINGOLA_V11-video.gltf", function (gltf) {
         const model = gltf.scene;
         model.position.set(1, 0, 0);
         model.scale.set(1, 1, 1);
