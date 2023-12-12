@@ -106,6 +106,25 @@
         1000
       );
 
+      // listener receives sounds
+      // it is connected to the camera, they move together
+      //
+      const listener = new THREE.AudioListener();
+      camera.add( listener );
+      const sound = new THREE.PositionalAudio( listener );
+
+      const audioLoader = new THREE.AudioLoader();
+      audioLoader.load('echo.mp3', function(buffer) {
+        sound.setBuffer(buffer);
+        // Assumes the audio has the "correct" amplitude at the ref distance
+        // Lowers it with a selectable model when the listener is further away
+        sound.setRefDistance(1); 
+        sound.setLoop( true );
+        sound.play();
+      })
+
+      
+
       const renderer = new THREE.WebGLRenderer();
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
@@ -120,6 +139,7 @@
       const cube = new THREE.Mesh(geometry, material);
       cube.scale.set(0.001, 0.001, 0.001);
       cube.position.set(0, 2, 0);
+      cube.add(sound);
       scene.add(cube);
 
     //   const customLight = new THREE.DirectionalLight(0xa19888, 8);
@@ -160,7 +180,7 @@
         render();
       }
 
-      /* Liner Interpolation
+      /* Linear Interpolation
        * lerp(min, max, ratio)
        * eg,
        * lerp(20, 60, .5)) = 40
