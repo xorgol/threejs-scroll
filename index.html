@@ -105,15 +105,17 @@
 
             const geometry = new THREE.BoxGeometry()
             const material = new THREE.MeshBasicMaterial({
-                color: 0x00ff00,
-                wireframe: true,
+                color: 0x000000,
+                wireframe: false,
+                opacity: 0.0
             })
 
             const cube = new THREE.Mesh(geometry, material)
-            cube.position.set(0, 0.5, -10)
+            cube.scale.set(0.1, 0.1, 0.1)
+            cube.position.set(0, 0, 0)
             scene.add(cube)
 
-            const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
+            const hemiLight = new THREE.AmbientLight( 0x404040 );
 				hemiLight.position.set( 0, 20, 0 );
 				scene.add( hemiLight );
 
@@ -124,8 +126,8 @@
             loader.setDRACOLoader( dracoLoader );
             loader.load('OPERA_SINGOLA_V11-video.gltf', function (gltf) {
                 const model = gltf.scene;
-                model.position.set(0, 0, 0)
-                model.scale.set(0.5, 0.5, 0.5);
+                model.position.set(1, 0, 0)
+                model.scale.set(1, 1, 1);
                 scene.add(model);
             })
 
@@ -200,9 +202,10 @@
                 end: 80,
                 func: () => {
                     camera.position.x = lerp(-20, 0, scalePercent(0, 80))
+                    camera.position.y = 1.8
                     //camera.position.y = lerp(1, 1, scalePercent(0, 80))
                     //camera.position.z = lerp(0, 0, scalePercent(0, 80))
-                    camera.rotation.set(0, -90, 0)
+                    camera.lookAt(cube.position)
                     //console.log(camera.position.x + " " + camera.position.y)
                 },
             })
