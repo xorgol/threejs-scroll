@@ -93,6 +93,7 @@
       import * as THREE from "three";
       import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
       import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
       const scene = new THREE.Scene();
 
@@ -259,10 +260,10 @@
       //add an animation that auto rotates the cube from 80 percent of scroll
       animationScripts.push({
         start: 70,
-        end: 101,
+        end: 90,
         func: () => {
-          camera.position.x = lerp(-2, 2, scalePercent(70, 101));
-          camera.position.z = lerp(0, 2, scalePercent(70, 101));
+          camera.position.x = lerp(-2, 2, scalePercent(70, 90));
+          camera.position.z = lerp(0, 2, scalePercent(70, 90));
           camera.position.y = 1.8;
           camera.lookAt(cube.position);
           console.log(
@@ -272,6 +273,22 @@
               " " +
               camera.position.z
           );
+        },
+      });
+
+      animationScripts.push({
+        start: 90,
+        end: 101,
+        func: () => {
+
+            camera.position.y = 1.8;
+
+            const controls = new OrbitControls( camera, renderer.domElement );
+            controls.enableZoom = false;
+            controls.minTargetRadius = 1.0;
+            controls.maxTargetRadius = 5.0;
+            controls.rotateSpeed = 0.1;
+            controls.zoomSpeed = 0.1;
         },
       });
 
