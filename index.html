@@ -48,12 +48,13 @@
                 position: fixed;
                 z-index: 99;
             }
-        </style>        
+        </style>      
+        <base href=".">  
         <script type="importmap">
             {
                 "imports": {
-                    "three": "/build/three.module.js",
-                    "three/addons/": "./node_modules/three/examples/jsm"
+                    "three": "./build/three.module.js",
+                    "three/addons/": "./node_modules/three/examples/jsm/"
                 }
             }
         </script>
@@ -155,52 +156,53 @@
 
             const animationScripts = []
 
-            //add an animation that flashes the cube through 100 percent of scroll
+            // //add an animation that flashes the cube through 100 percent of scroll
+            // animationScripts.push({
+            //     start: 0,
+            //     end: 101,
+            //     func: () => {
+            //         let g = material.color.g
+            //         g -= 0.05
+            //         if (g <= 0) {
+            //             g = 1.0
+            //         }
+            //         material.color.g = g
+            //     },
+            // })
+
+            // //add an animation that moves the cube through first 40 percent of scroll
+            // animationScripts.push({
+            //     start: 0,
+            //     end: 40,
+            //     func: () => {
+            //         camera.lookAt(cube.position)
+            //         camera.position.set(0, 1, 2)
+            //         cube.position.z = lerp(-10, 0, scalePercent(0, 40))
+            //         //console.log(cube.position.z)
+            //     },
+            // })
+
+            // //add an animation that rotates the cube between 40-50 percent of scroll
+            // animationScripts.push({
+            //     start: 40,
+            //     end: 60,
+            //     func: () => {
+            //         camera.lookAt(cube.position)
+            //         camera.position.set(0, 1, 2)
+            //         cube.rotation.z = lerp(0, Math.PI, scalePercent(40, 50))
+            //         //console.log(cube.rotation.z)
+            //     },
+            // })
+
+            //add an animation that moves the camera between 50-80 percent of scroll
             animationScripts.push({
                 start: 0,
-                end: 101,
-                func: () => {
-                    let g = material.color.g
-                    g -= 0.05
-                    if (g <= 0) {
-                        g = 1.0
-                    }
-                    material.color.g = g
-                },
-            })
-
-            //add an animation that moves the cube through first 40 percent of scroll
-            animationScripts.push({
-                start: 0,
-                end: 40,
-                func: () => {
-                    camera.lookAt(cube.position)
-                    camera.position.set(0, 1, 2)
-                    cube.position.z = lerp(-10, 0, scalePercent(0, 40))
-                    //console.log(cube.position.z)
-                },
-            })
-
-            //add an animation that rotates the cube between 40-60 percent of scroll
-            animationScripts.push({
-                start: 40,
-                end: 60,
-                func: () => {
-                    camera.lookAt(cube.position)
-                    camera.position.set(0, 1, 2)
-                    cube.rotation.z = lerp(0, Math.PI, scalePercent(40, 60))
-                    //console.log(cube.rotation.z)
-                },
-            })
-
-            //add an animation that moves the camera between 60-80 percent of scroll
-            animationScripts.push({
-                start: 60,
                 end: 80,
                 func: () => {
-                    camera.position.x = lerp(0, 5, scalePercent(60, 80))
-                    camera.position.y = lerp(1, 5, scalePercent(60, 80))
-                    camera.lookAt(cube.position)
+                    camera.position.x = lerp(-20, 0, scalePercent(0, 80))
+                    //camera.position.y = lerp(1, 1, scalePercent(0, 80))
+                    //camera.position.z = lerp(0, 0, scalePercent(0, 80))
+                    camera.rotation.set(0, -90, 0)
                     //console.log(camera.position.x + " " + camera.position.y)
                 },
             })
