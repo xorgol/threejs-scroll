@@ -122,18 +122,21 @@
       cube.position.set(0, 2, 0);
       scene.add(cube);
 
-      const customLight = new THREE.PointLight(0x404040, 700);
-      customLight.position.set(1, 2, 0);
+      const customLight = new THREE.DirectionalLight(0xa19888, 8);
+      customLight.position.set(1, 5, 0);
+      customLight.castShadow = true;
+      customLight.target = cube;
+      scene.add(customLight.target);
       customLight.lookAt(cube);
       scene.add(customLight);
 
-      const corridorLight = new THREE.PointLight(0x404040, 700);
-      corridorLight.position.set(-10, 3, 0);
+      const corridorLight = new THREE.DirectionalLight(0x404040, 5);
+      corridorLight.position.set(-10, 5, 0);
       corridorLight.lookAt(cube);
       scene.add(corridorLight);
 
-      const scorridorLight = new THREE.PointLight(0x404040, 700);
-      scorridorLight.position.set(-15, 3, 0);
+      const scorridorLight = new THREE.DirectionalLight(0x404040, 9);
+      scorridorLight.position.set(-15, 5, 0);
       scorridorLight.lookAt(cube);
       scene.add(scorridorLight);
 
