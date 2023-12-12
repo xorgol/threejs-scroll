@@ -52,7 +52,8 @@
         <script type="importmap">
             {
                 "imports": {
-                    "three": "/build/three.module.js"
+                    "three": "/build/three.module.js",
+                    "three/addons/": "./node_modules/three/examples/jsm"
                 }
             }
         </script>
@@ -87,7 +88,8 @@
         </main>
         <script type="module">
             import * as THREE from 'three'
-
+            import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+            import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
             const scene = new THREE.Scene()
 
@@ -109,6 +111,22 @@
             const cube = new THREE.Mesh(geometry, material)
             cube.position.set(0, 0.5, -10)
             scene.add(cube)
+
+            const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
+				hemiLight.position.set( 0, 20, 0 );
+				scene.add( hemiLight );
+
+            const dracoLoader = new DRACOLoader();
+			dracoLoader.setDecoderPath( 'jsm/libs/draco/gltf/' );
+
+            const loader = new GLTFLoader();
+            loader.setDRACOLoader( dracoLoader );
+            loader.load('OPERA_SINGOLA_V11-video.gltf', function (gltf) {
+                const model = gltf.scene;
+                model.position.set(0, 0, 0)
+                model.scale.set(0.5, 0.5, 0.5);
+                scene.add(model);
+            })
 
             window.addEventListener('resize', onWindowResize, false)
             function onWindowResize() {
