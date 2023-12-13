@@ -165,7 +165,7 @@
 
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
-      loader.load("OPERA_SINGOLA_V11-video.gltf", function (gltf) {
+      loader.load("OPERA_SINGOLA_V11.glb", function (gltf) {
         const model = gltf.scene;
         model.position.set(1, 0, 0);
         model.scale.set(1, 1, 1);
@@ -281,7 +281,7 @@
         end: 101,
         func: () => {
 
-            camera.position.y = 1.8;
+            camera.position.y = 2.2;
 
             const controls = new OrbitControls( camera, renderer.domElement );
             controls.enableZoom = false;
@@ -289,6 +289,8 @@
             controls.maxTargetRadius = 5.0;
             controls.rotateSpeed = 0.1;
             controls.zoomSpeed = 0.1;
+            //controls.target = new THREE.Vector3(0, -1, 0);
+            //controls.update();
         },
       });
 
