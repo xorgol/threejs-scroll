@@ -24,7 +24,7 @@
 
       main {
         width: 100vw;
-        height: 200vw;
+        height: 900vh;
         z-index: 99;
         position: absolute;
         justify-content: center;
@@ -45,10 +45,6 @@
         left: 10px;
         z-index: 99;
         font-size: 3vh;
-      }
-
-      #bigChungus {
-        height: 990vh;
       }
 
       #vwSrcLink {
@@ -171,15 +167,35 @@
       // customLight.lookAt(cube);
       scene.add(customLight);
 
+      const acustomLight = new THREE.PointLight(0xFFFFFF, 20);
+      acustomLight.position.set(1, 5, -5);
+      acustomLight.castShadow = true;
+      scene.add(acustomLight);
+
+      const bcustomLight = new THREE.PointLight(0xFFFFFF, 20);
+      bcustomLight.position.set(1, 5, -15);
+      bcustomLight.castShadow = true;
+      scene.add(bcustomLight);
+
       const corridorLight = new THREE.PointLight(0x404040, 9);
-      corridorLight.position.set(-10, 5, 1);
+      corridorLight.position.set(1, 5, -6);
       // corridorLight.lookAt(cube);
       scene.add(corridorLight);
 
-      const scorridorLight = new THREE.PointLight(0x404040, 9);
-      scorridorLight.position.set(6, 5, 1);
+      const scorridorLight = new THREE.PointLight(0xFFFFFF, 20);
+      scorridorLight.position.set(15, 5, 2.5);
       // scorridorLight.lookAt(cube);
       scene.add(scorridorLight);
+
+      const sacorridorLight = new THREE.PointLight(0xFFFFFF, 10);
+      sacorridorLight.position.set(6, 3, 5);
+      // scorridorLight.lookAt(cube);
+      scene.add(sacorridorLight);
+
+      const sbcorridorLight = new THREE.PointLight(0xFFFFFF, 20);
+      sbcorridorLight.position.set(18, 5, 2.5);
+      // scorridorLight.lookAt(cube);
+      scene.add(sbcorridorLight);
 
       const dracoLoader = new DRACOLoader();
       dracoLoader.setDecoderPath("jsm/libs/draco/gltf/");
@@ -278,7 +294,9 @@
               " " +
               camera.position.y +
               " " +
-              camera.position.z
+              camera.position.z +
+              " " +
+              camera.rotation.y/Math.PI
           );
         },
       });
@@ -298,7 +316,9 @@
               " " +
               camera.position.y +
               " " +
-              camera.position.z
+              camera.position.z +
+              " " +
+              camera.rotation.y/Math.PI
           );
         },
       });
@@ -317,7 +337,9 @@
               " " +
               camera.position.y +
               " " +
-              camera.position.z
+              camera.position.z +
+              " " +
+              camera.rotation.y/Math.PI
           );
         },
       });
@@ -336,7 +358,9 @@
               " " +
               camera.position.y +
               " " +
-              camera.position.z
+              camera.position.z +
+              " " +
+              camera.rotation.y/Math.PI
           );
         },
       });
@@ -355,7 +379,9 @@
               " " +
               camera.position.y +
               " " +
-              camera.position.z
+              camera.position.z +
+              " " +
+              camera.rotation.y/Math.PI
           );
         },
       });
@@ -374,7 +400,30 @@
               " " +
               camera.position.y +
               " " +
-              camera.position.z
+              camera.position.z +
+              " " +
+              camera.rotation.y/Math.PI
+          );
+        },
+      });
+
+      animationScripts.push({
+        start: 70,
+        end: 81,
+        func: () => {
+          camera.position.x = lerp(-1, 1, scalePercent(70, 80));
+          camera.position.z = lerp(-5, -5, scalePercent(70, 80));
+          camera.position.y = 1.8;
+          camera.rotation.y = lerp(Math.PI/2, Math.PI, scalePercent(70, 80));
+          // camera.lookAt(cube.position);
+          console.log(
+            camera.position.x +
+              " " +
+              camera.position.y +
+              " " +
+              camera.position.z +
+              " " +
+              camera.rotation.y/Math.PI
           );
         },
       });
